@@ -1,0 +1,527 @@
+<title>Bangkok Land Watch — Plot Tracker</title>
+<style>
+  :root {
+    --ground: #F3F5F2;
+    --card: #FFFFFF;
+    --ink: #1B211E;
+    --ink-2: #57625C;
+    --ink-3: #85908A;
+    --line: #DDE3DF;
+    --accent: #00875F;
+    --accent-ink: #006647;
+    --accent-soft: #E2F1EA;
+    --chip-cbd-bg: #E8ECF7;   --chip-cbd-fg: #2B4A8F;
+    --chip-mid-bg: #E2F1EA;   --chip-mid-fg: #00664A;
+    --chip-east-bg: #F7EEDD;  --chip-east-fg: #7A5A10;
+    --chip-outer-bg: #ECEAF3; --chip-outer-fg: #574B85;
+    --tier-ultra-bg: #F5E7EC; --tier-ultra-fg: #8F2B52;
+    --tier-high-bg: #F2EBD8;  --tier-high-fg: #6E5716;
+    --tier-mid-bg: #E4EEE9;   --tier-mid-fg: #2F5F4C;
+    --tier-entry-bg: #E9EDEF; --tier-entry-fg: #43606B;
+    --grid: #E7ECE8;
+    --tooltip-bg: #1B211E;
+    --tooltip-fg: #F3F5F2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #121714;
+      --card: #1B221E;
+      --ink: #E5EAE6;
+      --ink-2: #9CA8A0;
+      --ink-3: #6E7A73;
+      --line: #2C352F;
+      --accent: #35A182;
+      --accent-ink: #6BC5A9;
+      --accent-soft: #1E3A30;
+      --chip-cbd-bg: #23304D;   --chip-cbd-fg: #A9BFF0;
+      --chip-mid-bg: #1E3A30;   --chip-mid-fg: #8FD3BC;
+      --chip-east-bg: #3B3320;  --chip-east-fg: #E0C077;
+      --chip-outer-bg: #2E2A44; --chip-outer-fg: #BBAEE8;
+      --tier-ultra-bg: #42222E; --tier-ultra-fg: #E8A2BE;
+      --tier-high-bg: #3A3321;  --tier-high-fg: #D8BE6E;
+      --tier-mid-bg: #21382E;   --tier-mid-fg: #9CCDB6;
+      --tier-entry-bg: #253238; --tier-entry-fg: #A3BFCB;
+      --grid: #26302A;
+      --tooltip-bg: #E5EAE6;
+      --tooltip-fg: #121714;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #121714;
+    --card: #1B221E;
+    --ink: #E5EAE6;
+    --ink-2: #9CA8A0;
+    --ink-3: #6E7A73;
+    --line: #2C352F;
+    --accent: #35A182;
+    --accent-ink: #6BC5A9;
+    --accent-soft: #1E3A30;
+    --chip-cbd-bg: #23304D;   --chip-cbd-fg: #A9BFF0;
+    --chip-mid-bg: #1E3A30;   --chip-mid-fg: #8FD3BC;
+    --chip-east-bg: #3B3320;  --chip-east-fg: #E0C077;
+    --chip-outer-bg: #2E2A44; --chip-outer-fg: #BBAEE8;
+    --tier-ultra-bg: #42222E; --tier-ultra-fg: #E8A2BE;
+    --tier-high-bg: #3A3321;  --tier-high-fg: #D8BE6E;
+    --tier-mid-bg: #21382E;   --tier-mid-fg: #9CCDB6;
+    --tier-entry-bg: #253238; --tier-entry-fg: #A3BFCB;
+    --grid: #26302A;
+    --tooltip-bg: #E5EAE6;
+    --tooltip-fg: #121714;
+  }
+  :root[data-theme="light"] {
+    --ground: #F3F5F2;
+    --card: #FFFFFF;
+    --ink: #1B211E;
+    --ink-2: #57625C;
+    --ink-3: #85908A;
+    --line: #DDE3DF;
+    --accent: #00875F;
+    --accent-ink: #006647;
+    --accent-soft: #E2F1EA;
+    --chip-cbd-bg: #E8ECF7;   --chip-cbd-fg: #2B4A8F;
+    --chip-mid-bg: #E2F1EA;   --chip-mid-fg: #00664A;
+    --chip-east-bg: #F7EEDD;  --chip-east-fg: #7A5A10;
+    --chip-outer-bg: #ECEAF3; --chip-outer-fg: #574B85;
+    --tier-ultra-bg: #F5E7EC; --tier-ultra-fg: #8F2B52;
+    --tier-high-bg: #F2EBD8;  --tier-high-fg: #6E5716;
+    --tier-mid-bg: #E4EEE9;   --tier-mid-fg: #2F5F4C;
+    --tier-entry-bg: #E9EDEF; --tier-entry-fg: #43606B;
+    --grid: #E7ECE8;
+    --tooltip-bg: #1B211E;
+    --tooltip-fg: #F3F5F2;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: Seravek, "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 40px 20px 72px; }
+
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent-ink); font-weight: 600; margin: 0 0 6px;
+  }
+  h1 {
+    font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    font-size: clamp(30px, 5vw, 42px); font-weight: 600;
+    margin: 0 0 4px; text-wrap: balance; letter-spacing: -0.01em;
+  }
+  .meta { color: var(--ink-2); font-size: 14px; margin: 0; }
+  .meta strong { color: var(--ink); font-weight: 600; }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px; margin: 28px 0 8px;
+  }
+  .stat {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .stat .k {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 600;
+  }
+  .stat .v {
+    font-family: "SF Mono", ui-monospace, Consolas, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 22px; font-weight: 600; margin-top: 2px;
+  }
+  .stat .s { font-size: 12px; color: var(--ink-2); }
+
+  h2 {
+    font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    font-size: 21px; font-weight: 600; margin: 40px 0 4px;
+  }
+  .sub { color: var(--ink-2); font-size: 13.5px; margin: 0 0 16px; }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; align-items: center; }
+  .filters .flabel {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 600; margin-right: 2px;
+  }
+  .chipbtn {
+    border: 1px solid var(--line); background: var(--card); color: var(--ink-2);
+    border-radius: 999px; padding: 5px 13px; font-size: 13px; cursor: pointer;
+    font-family: inherit;
+  }
+  .chipbtn:hover { border-color: var(--accent); color: var(--ink); }
+  .chipbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .chipbtn[aria-pressed="true"] {
+    background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600;
+  }
+  :root[data-theme="dark"] .chipbtn[aria-pressed="true"] { color: #0E1512; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .chipbtn[aria-pressed="true"] { color: #0E1512; }
+  }
+  .fdivider { width: 1px; height: 20px; background: var(--line); margin: 0 6px; }
+
+  .chart-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 18px 18px 8px; position: relative; overflow-x: auto;
+  }
+  .bar-row { display: grid; grid-template-columns: 190px 1fr; gap: 10px; align-items: center; padding: 5px 0; }
+  .bar-row .blabel { font-size: 13px; color: var(--ink-2); text-align: right; line-height: 1.25; }
+  .bar-row .blabel b { color: var(--ink); font-weight: 600; display: block; }
+  .btrack { position: relative; height: 22px; }
+  .bfill {
+    position: absolute; left: 0; top: 3px; height: 16px;
+    background: var(--accent); border-radius: 0 4px 4px 0; min-width: 3px;
+  }
+  .bval {
+    position: absolute; top: 0; font-family: "SF Mono", ui-monospace, Consolas, monospace;
+    font-variant-numeric: tabular-nums; font-size: 12.5px; color: var(--ink);
+    line-height: 22px; white-space: nowrap;
+  }
+  .bar-row:hover .bfill { background: var(--accent-ink); }
+  .chart-note { font-size: 12px; color: var(--ink-3); padding: 10px 0 8px; margin: 0; }
+
+  .register { display: flex; flex-direction: column; gap: 12px; }
+  .plot {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 18px 20px;
+  }
+  .plot-head { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; justify-content: space-between; }
+  .plot-name {
+    font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    font-size: 18.5px; font-weight: 600; margin: 0;
+  }
+  .plot-name .dist { color: var(--ink-2); font-weight: 400; font-size: 15px; }
+  .plot-price {
+    font-family: "SF Mono", ui-monospace, Consolas, monospace;
+    font-variant-numeric: tabular-nums; font-size: 17px; font-weight: 600;
+    color: var(--accent-ink); white-space: nowrap;
+  }
+  .plot-price .unit { color: var(--ink-2); font-weight: 400; font-size: 12.5px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 2px; }
+  .chip {
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.02em;
+    border-radius: 999px; padding: 2px 10px;
+  }
+  .c-cbd   { background: var(--chip-cbd-bg);   color: var(--chip-cbd-fg); }
+  .c-mid   { background: var(--chip-mid-bg);   color: var(--chip-mid-fg); }
+  .c-east  { background: var(--chip-east-bg);  color: var(--chip-east-fg); }
+  .c-outer { background: var(--chip-outer-bg); color: var(--chip-outer-fg); }
+  .t-ultra { background: var(--tier-ultra-bg); color: var(--tier-ultra-fg); }
+  .t-high  { background: var(--tier-high-bg);  color: var(--tier-high-fg); }
+  .t-mid   { background: var(--tier-mid-bg);   color: var(--tier-mid-fg); }
+  .t-entry { background: var(--tier-entry-bg); color: var(--tier-entry-fg); }
+
+  .plot-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    gap: 10px 22px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line);
+  }
+  .cell .k {
+    font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 600;
+  }
+  .cell .v { font-size: 13.5px; color: var(--ink); margin-top: 1px; }
+  .cell .v .num {
+    font-family: "SF Mono", ui-monospace, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .cell.wide { grid-column: 1 / -1; }
+  .cell .v a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .cell .v a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .foot {
+    margin-top: 36px; border-top: 1px solid var(--line); padding-top: 16px;
+    font-size: 12.5px; color: var(--ink-2);
+  }
+  .foot ul { margin: 6px 0 0; padding-left: 18px; }
+  .foot li { margin: 3px 0; }
+
+  .empty { color: var(--ink-2); font-size: 14px; padding: 20px 4px; display: none; }
+
+  @media (max-width: 620px) {
+    .bar-row { grid-template-columns: 110px 1fr; }
+    .bar-row .blabel { font-size: 12px; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">RE-Thailand · Acquisition Register</p>
+    <h1>Bangkok Land Watch</h1>
+    <p class="meta">
+      <strong id="count-all">12</strong> plots tracked ·
+      last swept <strong>9 July 2026</strong> ·
+      refreshes every Monday 09:00 Bangkok time
+    </p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="k">Plots on register</div><div class="v">12</div><div class="s">across 4 corridor types</div></div>
+    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿73,515</div><div class="s">priced plots only (7 of 12)</div></div>
+    <div class="stat"><div class="k">Asking range</div><div class="v">฿7.8M – ฿1.17B</div><div class="s">Samae Dam → Phrom Phong</div></div>
+    <div class="stat"><div class="k">Cheapest per m²</div><div class="v">฿8,060</div><div class="s">Samae Dam, Bang Khun Thian</div></div>
+  </div>
+
+  <h2>Asking price per square metre</h2>
+  <p class="sub">Priced plots only, sorted high to low. Hover a bar for plot detail.</p>
+  <div class="chart-card" id="chart"></div>
+
+  <h2>Plot register</h2>
+  <p class="sub">Every tracked plot with catchment, spending power, competition, transport, and posting detail.</p>
+
+  <div class="filters" role="group" aria-label="Filter plots">
+    <span class="flabel">Catchment</span>
+    <button class="chipbtn" data-group="catchment" data-val="all" aria-pressed="true">All</button>
+    <button class="chipbtn" data-group="catchment" data-val="cbd" aria-pressed="false">CBD core</button>
+    <button class="chipbtn" data-group="catchment" data-val="mid" aria-pressed="false">Mid-city transit</button>
+    <button class="chipbtn" data-group="catchment" data-val="east" aria-pressed="false">East growth corridor</button>
+    <button class="chipbtn" data-group="catchment" data-val="outer" aria-pressed="false">Outer suburban</button>
+    <span class="fdivider" aria-hidden="true"></span>
+    <span class="flabel">Spending power</span>
+    <button class="chipbtn" data-group="tier" data-val="all" aria-pressed="true">All</button>
+    <button class="chipbtn" data-group="tier" data-val="ultra" aria-pressed="false">Ultra</button>
+    <button class="chipbtn" data-group="tier" data-val="high" aria-pressed="false">High</button>
+    <button class="chipbtn" data-group="tier" data-val="mid" aria-pressed="false">Middle</button>
+    <button class="chipbtn" data-group="tier" data-val="entry" aria-pressed="false">Entry</button>
+  </div>
+
+  <div class="register" id="register"></div>
+  <p class="empty" id="empty">No plots match this combination of filters.</p>
+
+  <div class="foot">
+    <strong>Methodology &amp; caveats</strong>
+    <ul>
+      <li><b>Perimeter</b> is not published on Thai listings — figures here are estimates assuming a near-square plot (4 × √area). The true boundary comes from the Chanote (title deed) survey drawing.</li>
+      <li><b>Posted date:</b> most Thai portals hide the original posting date; where unavailable, the register shows the date this tracker first saw the listing.</li>
+      <li><b>Spending power</b> is inferred from the residential product that sells in each catchment (e.g. ฿3–7M townhomes on the Pink Line, ฿8–20M houses on Krungthep Kreetha, ฿60M+ ultra-luxury in Phrom Phong).</li>
+      <li>USD listings converted at ≈ ฿32.5/USD. Units: 1 rai = 1,600 m²; 1 sq.wah = 4 m².</li>
+      <li>Sources: FazWaz, DDproperty, Thailand-Property, Dot Property, Livinginsider, Hipflat; market context from Bangkok Post, Nation Thailand, Colliers. Data gathered via web search — portals block direct crawling.</li>
+      <li>Foreign nationals cannot hold Thai land freehold; plan for a majority-Thai company, BOI promotion, or 30-year lease structure.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const CATCHMENT = {
+  cbd:   { label: "CBD core",             cls: "c-cbd" },
+  mid:   { label: "Mid-city transit",     cls: "c-mid" },
+  east:  { label: "East growth corridor", cls: "c-east" },
+  outer: { label: "Outer suburban",       cls: "c-outer" }
+};
+const TIER = {
+  ultra: { label: "Ultra spending power",  cls: "t-ultra", note: "฿60M+ homes / ฿250k+ per m² condos" },
+  high:  { label: "High spending power",   cls: "t-high",  note: "฿15–60M homes, upper condos" },
+  mid:   { label: "Middle spending power", cls: "t-mid",   note: "฿5–15M houses & townhomes" },
+  entry: { label: "Entry spending power",  cls: "t-entry", note: "under ฿5M townhomes" }
+};
+
+const PLOTS = [
+  {
+    name: "Sukhumvit Soi 47–49 dual-access plot", district: "Watthana (Phrom Phong)",
+    price: "฿1.17B", priceSub: "฿1.15M/sq.wah", perM2: 287500,
+    area: "2-2-17.5 rai · 4,070 m²", perimeter: "≈ 255 m (est.)",
+    catchment: "cbd", tier: "ultra",
+    transport: "BTS Phrom Phong ≈ 700 m (est.); dual soi access from Sukhumvit 47 & 49",
+    posted: "First seen 9 Jul 2026 (portal hides post date)",
+    competitors: "Phrom Phong luxury condo cluster — AP, Sansiri and Japanese-JV towers; the densest ultra-luxury competition in Bangkok.",
+    detail: "Flagship-scale freehold plot in the Japanese-expat / Thai HNW heart of Sukhumvit. Two street entrances ease construction logistics and podium design.",
+    source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
+  },
+  {
+    name: "Sukhumvit 101 development plot", district: "Phra Khanong (Punnawithi)",
+    price: "฿450M", priceSub: "≈ ฿566k/sq.wah", perM2: 141509,
+    area: "795 sq.wah · 3,180 m²", perimeter: "≈ 226 m (est.)",
+    catchment: "mid", tier: "high",
+    transport: "BTS Punnawithi ≈ 500–800 m (est.), Sukhumvit line",
+    posted: "First seen 9 Jul 2026 (portal hides post date)",
+    competitors: "Condo pipeline around True Digital Park; mid-to-upper brands (Sansiri, Ananda) active on the Punnawithi–Udom Suk stretch.",
+    detail: "Sits in the True Digital Park tech-worker catchment — strong rental depth from young professionals. Suits an 8-storey low-rise or high-rise condo subject to zoning.",
+    source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
+  },
+  {
+    name: "Thung Mahamek small plot", district: "Sathon",
+    price: "≈ ฿24M", priceSub: "$736k · $3,680/m²", perM2: 119600,
+    area: "50 sq.wah · 200 m²", perimeter: "≈ 57 m (est.)",
+    catchment: "cbd", tier: "ultra",
+    transport: "MRT Lumphini ≈ 1 km (est.); Sathon CBD fringe",
+    posted: "First seen 9 Jul 2026 (FazWaz listing)",
+    competitors: "Boutique luxury townhome and single-house builders; limited direct competition at this micro scale.",
+    detail: "Small embassy-quarter plot — too small for a project, right-sized for one luxury home or a micro-boutique build-to-sell. Expat and diplomat catchment.",
+    source: { label: "FazWaz Bangkok land", url: "https://www.fazwaz.com/land-for-sale/thailand/bangkok" }
+  },
+  {
+    name: "Phra Khanong Nuea plot", district: "Watthana (On Nut–Ekkamai)",
+    price: "≈ ฿78M", priceSub: "$2.41M · $2,262/m²", perM2: 73515,
+    area: "266 sq.wah · 1,064 m²", perimeter: "≈ 130 m (est.)",
+    catchment: "mid", tier: "high",
+    transport: "Between BTS On Nut and Ekkamai, ≈ 1 km (est.)",
+    posted: "First seen 9 Jul 2026 (FazWaz listing)",
+    competitors: "Heavy low-rise condo activity On Nut–Ekkamai; established players hold most soi-front sites.",
+    detail: "Young-professional rental catchment with proven condo absorption. Suits a low-rise condo or 6–8 unit upscale townhome cluster.",
+    source: { label: "FazWaz Bangkok land", url: "https://www.fazwaz.com/land-for-sale/thailand/bangkok" }
+  },
+  {
+    name: "Lat Phrao 1.68-rai plot", district: "Lat Phrao",
+    price: "≈ ฿71M", priceSub: "$2.19M · $814/m²", perM2: 26455,
+    area: "672 sq.wah · 2,688 m²", perimeter: "≈ 207 m (est.)",
+    catchment: "mid", tier: "mid",
+    transport: "MRT Yellow Line + Blue Line interchange zone (Lat Phrao)",
+    posted: "First seen 9 Jul 2026 (FazWaz listing)",
+    competitors: "Mid-market townhome brands (Pruksa, Golden Land style product); appraisal here ≈ ¼ of Sukhumvit prices.",
+    detail: "Mid-city family catchment at ~1/10th the per-m² price of Phrom Phong. Suits a townhome cluster or small low-rise condo near the Yellow Line.",
+    source: { label: "FazWaz Bangkok land", url: "https://www.fazwaz.com/land-for-sale/thailand/bangkok" }
+  },
+  {
+    name: "Chorakhe Bua ~1-rai plot", district: "Lat Phrao (Kaset–Nawamin)",
+    price: "≈ ฿27M", priceSub: "$821k · $491/m²", perM2: 15958,
+    area: "418 sq.wah · 1,672 m²", perimeter: "≈ 164 m (est.)",
+    catchment: "mid", tier: "mid",
+    transport: "Kaset–Nawamin lifestyle corridor; future Brown Line alignment",
+    posted: "First seen 9 Jul 2026 (FazWaz listing)",
+    competitors: "Detached-house pocket projects along Kaset–Nawamin; strong community retail already in place.",
+    detail: "Family catchment with established lifestyle malls. Suits 4–8 detached houses or a premium townhome pocket.",
+    source: { label: "FazWaz Bangkok land", url: "https://www.fazwaz.com/land-for-sale/thailand/bangkok" }
+  },
+  {
+    name: "Samae Dam plot", district: "Bang Khun Thian (Rama II)",
+    price: "≈ ฿7.8M", priceSub: "$241k · $248/m²", perM2: 8060,
+    area: "243 sq.wah · 972 m²", perimeter: "≈ 125 m (est.)",
+    catchment: "outer", tier: "entry",
+    transport: "Rama II road corridor; no rail — car/bus catchment",
+    posted: "First seen 9 Jul 2026 (FazWaz listing)",
+    competitors: "Volume townhouse developers (Pruksa-type product) dominate the Rama II corridor.",
+    detail: "Cheapest per-m² on the register. Entry-level townhouse catchment; works only at volume pricing, but lowest capital at risk for a first project.",
+    source: { label: "FazWaz Bangkok land", url: "https://www.fazwaz.com/land-for-sale/thailand/bangkok" }
+  },
+  {
+    name: "Sukhumvit Soi 5 twin plots", district: "Watthana (Nana)",
+    price: "On request", priceSub: "appraisal ฿750k+/sq.wah zone", perM2: null,
+    area: "98.6 sq.wah · 394 m² (2 plots)", perimeter: "≈ 80 m (est.)",
+    catchment: "cbd", tier: "ultra",
+    transport: "BTS Nana 100 m (stated in listing)",
+    posted: "First seen 9 Jul 2026 (FazWaz listing)",
+    competitors: "Hotel and branded-residence operators; Nana–Ploenchit corridor is hotel-led.",
+    detail: "100 m walk to BTS in the tourist core — boutique hotel, serviced apartment, or branded residence play rather than family residential.",
+    source: { label: "FazWaz — land with BTS/MRT access", url: "https://www.fazwaz.com/land-for-sale-with-access-to-btsmrt/thailand/bangkok" }
+  },
+  {
+    name: "Rama 9 Soi 49 vacant plot", district: "Suan Luang",
+    price: "On request", priceSub: "prime soi position", perM2: null,
+    area: "116 sq.wah · 464 m²", perimeter: "≈ 86 m (est.)",
+    catchment: "east", tier: "high",
+    transport: "650 m into the soi; near Motorway 7 ramp and The Nine Rama 9",
+    posted: "First seen 9 Jul 2026 (portal listing)",
+    competitors: "Pool-villa and premium single-house builders riding 'new CBD' spillover from Rama 9.",
+    detail: "New-CBD spillover catchment: Rama 9 office workers buying premium single houses. Suits 1–2 pool villas.",
+    source: { label: "Dot Property Bangkok land", url: "https://www.dotproperty.co.th/en/land-for-sale/bangkok" }
+  },
+  {
+    name: "Phatthanakan 94 corner plot", district: "Prawet (On Nut 70/1)",
+    price: "On request", priceSub: "listed as \"rare item\"", perM2: null,
+    area: "391 sq.wah · 1,564 m²", perimeter: "≈ 158 m (est.)",
+    catchment: "east", tier: "high",
+    transport: "Krungthep Kreetha corridor — new road links Rama IX ↔ Ramkhamhaeng ↔ Srinakarin; Airport Link Hua Mak a few km",
+    posted: "First seen 9 Jul 2026 (portal listing)",
+    competitors: "40+ premium projects on the corridor: AP's The Palazzo Krungthep Kreetha (ultra-lux, 2025), Sansiri's Burasiri Krungthep Kreetha and SANSIRI 10 EAST portfolio (165 rai, ≈฿18B).",
+    detail: "The hottest low-rise zone in east Bangkok — ฿8–20M houses sold strongly through 2025 and demand is forecast to hold in 2026. Corner position aids layout and access.",
+    source: { label: "Nation Thailand — 2026 hotspots", url: "https://www.nationthailand.com/business/property/40060102" }
+  },
+  {
+    name: "Khu Bon residential plot", district: "Khan Na Yao (Ram Inthra)",
+    price: "On request", priceSub: "Pink Line growth zone", perM2: null,
+    area: "116 sq.wah · 464 m²", perimeter: "≈ 86 m (est.)",
+    catchment: "east", tier: "mid",
+    transport: "MRT Pink Line — Ramintra & Fashion Island stations; Ekkamai–Ram Inthra expressway",
+    posted: "First seen 9 Jul 2026 (Dot Property listing)",
+    competitors: "SC Asset's 95E1 on the Ekkamai–Ram Inthra expressway; townhome brands clustering around Pink Line stations.",
+    detail: "Pink Line has created fresh ฿3–7M townhouse and semi-detached demand around Fashion Island. Small plot — suited to a semi-detached pair or as part of an assembly.",
+    source: { label: "Dot Property — Ram Inthra land", url: "https://www.dotproperty.co.th/en/land-for-sale/bangkok/khan-na-yao/ram-inthra" }
+  },
+  {
+    name: "Ratchaphruek ~9 rai estate site", district: "Bang Rak Yai (west metro, Nonthaburi)",
+    price: "On request", priceSub: "estate-scale acreage", perM2: null,
+    area: "≈ 9 rai · ≈ 14,400 m²", perimeter: "≈ 480 m (est.)",
+    catchment: "outer", tier: "mid",
+    transport: "Near MRT Purple Line — Bang Rak Yai station",
+    posted: "First seen 9 Jul 2026 (Livinginsider listing)",
+    competitors: "West-side single-house estates from Land & Houses and Supalai-type players.",
+    detail: "The only estate-scale site on the register — enough land for a full gated single-house project on the Purple Line. Technically over the Nonthaburi line; same west-metro catchment.",
+    source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
+  },
+  {
+    name: "Ramkhamhaeng / Krungthep Kreetha zone watch", district: "Bang Kapi–Saphan Sung",
+    price: "Zone watch", priceSub: "multiple listings live", perM2: null,
+    area: "Various — DDproperty zone page", perimeter: "—",
+    catchment: "east", tier: "high",
+    transport: "Krungthep Kreetha new road; MRT Yellow & Orange Line frontier",
+    posted: "DDproperty zone page dated Jan 2026",
+    competitors: "Sansiri (Narasiri Bangna KM10, Setthasiri), AP Majestic Collection; Bang Na assembles 10+ rai more easily than downtown (avg ≈ ฿48,351/m²).",
+    detail: "Watch entry rather than a single plot: the Ramkhamhaeng–Krungthep Kreetha–Srinakarin triangle is where 2026 low-rise demand concentrates. Weekly sweep pulls new plots from here first.",
+    source: { label: "DDproperty — Ramkhamhaeng land", url: "https://www.ddproperty.com/en/land-for-sale/in-ramkhamhaeng-bangkapi-krungthepkreetha-sukhapiban-3-6610009" }
+  }
+];
+
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+/* ---- chart: horizontal bars, ฿/m², priced plots only ---- */
+(function renderChart() {
+  const priced = PLOTS.filter(p => p.perM2).sort((a, b) => b.perM2 - a.perM2);
+  const max = Math.max(...priced.map(p => p.perM2));
+  const host = document.getElementById("chart");
+  host.innerHTML = priced.map(p => {
+    const w = Math.max(1.5, (p.perM2 / max) * 78);
+    return `<div class="bar-row" title="${esc(p.name)} — ${esc(p.district)} · ${esc(p.area)} · asking ${esc(p.price)}">
+      <div class="blabel"><b>${esc(p.district.split("(")[0].trim())}</b>${esc((p.district.match(/\((.+)\)/) || [,""])[1])}</div>
+      <div class="btrack">
+        <div class="bfill" style="width:${w}%"></div>
+        <div class="bval" style="left:calc(${w}% + 8px)">฿${p.perM2.toLocaleString("en-US")}</div>
+      </div>
+    </div>`;
+  }).join("") +
+  `<p class="chart-note">5 further plots are price-on-request and excluded here — see the register below.</p>`;
+})();
+
+/* ---- register ---- */
+function plotCard(p) {
+  const c = CATCHMENT[p.catchment], t = TIER[p.tier];
+  return `<article class="plot" data-catchment="${p.catchment}" data-tier="${p.tier}">
+    <div class="plot-head">
+      <h3 class="plot-name">${esc(p.name)} <span class="dist">· ${esc(p.district)}</span></h3>
+      <div class="plot-price">${esc(p.price)} <span class="unit">${esc(p.priceSub)}</span></div>
+    </div>
+    <div class="chips">
+      <span class="chip ${c.cls}">${c.label}</span>
+      <span class="chip ${t.cls}" title="${esc(t.note)}">${t.label}</span>
+    </div>
+    <div class="plot-grid">
+      <div class="cell"><div class="k">Land size</div><div class="v num">${esc(p.area)}</div></div>
+      <div class="cell"><div class="k">Est. perimeter</div><div class="v num">${esc(p.perimeter)}</div></div>
+      <div class="cell"><div class="k">Transport</div><div class="v">${esc(p.transport)}</div></div>
+      <div class="cell"><div class="k">Posted / first seen</div><div class="v">${esc(p.posted)}</div></div>
+      <div class="cell wide"><div class="k">Competitors in catchment</div><div class="v">${esc(p.competitors)}</div></div>
+      <div class="cell wide"><div class="k">Posting detail</div><div class="v">${esc(p.detail)} <a href="${esc(p.source.url)}" target="_blank" rel="noopener">${esc(p.source.label)} ↗</a></div></div>
+    </div>
+  </article>`;
+}
+document.getElementById("register").innerHTML = PLOTS.map(plotCard).join("");
+
+/* ---- filters ---- */
+const state = { catchment: "all", tier: "all" };
+function applyFilters() {
+  let shown = 0;
+  document.querySelectorAll("#register .plot").forEach(el => {
+    const ok = (state.catchment === "all" || el.dataset.catchment === state.catchment)
+            && (state.tier === "all" || el.dataset.tier === state.tier);
+    el.style.display = ok ? "" : "none";
+    if (ok) shown++;
+  });
+  document.getElementById("empty").style.display = shown ? "none" : "block";
+}
+document.querySelectorAll(".chipbtn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    state[btn.dataset.group] = btn.dataset.val;
+    document.querySelectorAll(`.chipbtn[data-group="${btn.dataset.group}"]`)
+      .forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    applyFilters();
+  });
+});
+</script>
