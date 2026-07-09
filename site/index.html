@@ -284,14 +284,14 @@
     <p class="eyebrow">RE-Thailand · Acquisition Register</p>
     <h1>Bangkok Land Watch</h1>
     <p class="meta">
-      <strong id="count-all">12</strong> plots + 1 zone watch tracked ·
-      last swept <strong>9 July 2026</strong> ·
+      <strong id="count-all">15</strong> plots + 1 zone watch tracked ·
+      last swept <strong>9 July 2026 (afternoon)</strong> ·
       refreshes every Monday 09:00 Bangkok time
     </p>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="k">Plots on register</div><div class="v">12</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
+    <div class="stat"><div class="k">Plots on register</div><div class="v">15</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
     <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿73,515</div><div class="s">priced plots only (7 of 12)</div></div>
     <div class="stat"><div class="k">Asking range</div><div class="v">฿7.8M – ฿1.17B</div><div class="s">Samae Dam → Phrom Phong</div></div>
     <div class="stat"><div class="k">Cheapest per m²</div><div class="v">฿8,060</div><div class="s">Samae Dam, Bang Khun Thian</div></div>
@@ -499,6 +499,39 @@ const PLOTS = [
     source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
   },
   {
+    name: "Krungthep Kreetha 20 Soi 7 plot", district: "Saphan Sung (Krungthep Kreetha)",
+    price: "On request", priceSub: "international-school belt", perM2: null,
+    area: "1-0-2 rai · 1,608 m²", perimeter: "≈ 160 m (est.)",
+    catchment: "east", tier: "high",
+    transport: "Krungthep Kreetha road; near Brighton College & Wellington College international schools and Unico Grande golf",
+    posted: "First seen 9 Jul 2026 (afternoon sweep)",
+    competitors: "The zone watch called this corridor: AP's The Palazzo, Sansiri's Burasiri, 40+ premium projects competing for exactly this school-belt buyer.",
+    detail: "Rare single-rai plot inside the international-school belt — the amenity that anchors ฿15M+ house demand here. Suits 1–3 premium detached houses.",
+    source: { label: "Thailand-Property Bangkok land", url: "https://www.thailand-property.com/land-for-sale/bangkok" }
+  },
+  {
+    name: "Khlong Toei plot near Gateway Ekkamai", district: "Khlong Toei (Sukhumvit 40s)",
+    price: "On request", priceSub: "BTS Ekkamai walk zone", perM2: null,
+    area: "98 sq.wah · 392 m²", perimeter: "≈ 79 m (est.)",
+    catchment: "mid", tier: "high",
+    transport: "Near Gateway Ekkamai mall, BTS Ekkamai; off Sukhumvit main road",
+    posted: "First seen 9 Jul 2026 (afternoon sweep)",
+    competitors: "Ekkamai low-rise condo and luxury-townhome builders; soi-front sites tightly held.",
+    detail: "Compact infill plot in the Ekkamai walk zone — boutique 4–6 unit townhome or a single luxury home with strong resale depth.",
+    source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
+  },
+  {
+    name: "Prachasamran Road estate site", district: "Nong Chok (far east)",
+    price: "On request", priceSub: "21-3-35 rai", perM2: null,
+    area: "21-3-35 rai · ≈ 34,940 m²", perimeter: "≈ 748 m (est.)",
+    catchment: "outer", tier: "entry",
+    transport: "Road-based; ≈ 8 km beyond MRT Pink Line Min Buri terminus",
+    posted: "First seen 9 Jul 2026 (afternoon sweep)",
+    competitors: "Volume housing-estate developers in outer-east Bangkok; land-bank competition more than product competition.",
+    detail: "The largest site on the register — full housing-estate or land-bank scale at far-suburb pricing. A long-hold play on eastward expansion.",
+    source: { label: "Thailand-Property Bangkok land", url: "https://www.thailand-property.com/land-for-sale/bangkok" }
+  },
+  {
     name: "Ramkhamhaeng / Krungthep Kreetha zone watch", district: "Bang Kapi–Saphan Sung",
     price: "Zone watch", priceSub: "multiple listings live", perM2: null,
     area: "Various — DDproperty zone page", perimeter: "—",
@@ -525,12 +558,15 @@ const COORDS = [
   [13.7090, 100.6440], // Phatthanakan 94
   [13.8360, 100.6680], // Khu Bon
   [13.8770, 100.4430], // Ratchaphruek
+  [13.7560, 100.6620], // Krungthep Kreetha 20
+  [13.7180, 100.5840], // Khlong Toei / Gateway Ekkamai
+  [13.8550, 100.8620], // Nong Chok Prachasamran
   [13.7500, 100.6520]  // Ramkhamhaeng zone watch
 ];
 /* land area in m², same order as PLOTS (null = zone watch, no single parcel) */
-const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, null];
+const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 1608, 392, 34940, null];
 PLOTS.forEach((p, i) => { p.lat = COORDS[i][0]; p.lng = COORDS[i][1]; p.sqm = SQM[i]; p.id = "plot-" + i; });
-PLOTS[12].zone = true;
+PLOTS[15].zone = true;
 const gmaps = p => "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lng;
 const gearth = p => "https://earth.google.com/web/@" + p.lat + "," + p.lng + ",0a,600d,35y,0h,0t,0r";
 
@@ -593,7 +629,7 @@ function esc(s) {
 (function renderMap() {
   const svg = document.getElementById("mapsvg");
   const NS = "http://www.w3.org/2000/svg";
-  const X = lng => 30 + (lng - 100.40) / 0.31 * 880;
+  const X = lng => 30 + (lng - 100.40) / 0.48 * 880;
   const Y = lat => 770 - (lat - 13.60) / 0.33 * 740;
   const path = pts => pts.map((p, i) => (i ? "L" : "M") + X(p[1]).toFixed(1) + " " + Y(p[0]).toFixed(1)).join(" ");
   const el = (tag, attrs, text) => {
@@ -695,7 +731,7 @@ function esc(s) {
       </div>
     </div>`;
   }).join("") +
-  `<p class="chart-note">5 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
+  `<p class="chart-note">8 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
 })();
 
 /* ---- register ---- */
