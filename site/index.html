@@ -182,6 +182,8 @@
   .map-tip .num { font-family: "SF Mono", ui-monospace, Consolas, monospace; font-variant-numeric: tabular-nums; }
   .map-legend { display: flex; flex-wrap: wrap; gap: 6px 10px; padding: 10px 8px 4px; align-items: center; }
   .map-legend .lnote { font-size: 12px; color: var(--ink-3); margin-left: auto; }
+  .map-legend .lnote a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .map-legend .lnote a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .plot.flash { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
   @media (prefers-reduced-motion: no-preference) {
     .plot { transition: border-color 0.4s, box-shadow 0.4s; }
@@ -255,6 +257,13 @@
   .cell .v a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
   .cell .v a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+  .gauge { margin-top: 4px; }
+  .gauge svg { display: block; width: 100%; max-width: 520px; height: auto; }
+  .gauge .pitch { fill: none; stroke: var(--ink-3); stroke-dasharray: 5 4; stroke-width: 1.2; }
+  .gauge .fp { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.6; }
+  .gauge text { font-family: Seravek, "Avenir Next", "Segoe UI", system-ui, sans-serif; font-size: 11px; fill: var(--ink-2); }
+  .gauge .dim { fill: var(--accent-ink); font-weight: 600; }
+
   .foot {
     margin-top: 36px; border-top: 1px solid var(--line); padding-top: 16px;
     font-size: 12.5px; color: var(--ink-2);
@@ -298,7 +307,7 @@
       <span class="chip c-mid">Mid-city transit</span>
       <span class="chip c-east">East growth corridor</span>
       <span class="chip c-outer">Outer suburban</span>
-      <span class="lnote">Dashed marker = zone watch, not a single parcel</span>
+      <span class="lnote"><a id="kml" download="bangkok-land-watch.kml" href="#">Download all anchors as KML for Google Earth ↓</a> · Dashed marker = zone watch</span>
     </div>
   </div>
 
@@ -333,6 +342,7 @@
     <ul>
       <li><b>Perimeter</b> is not published on Thai listings — figures here are estimates assuming a near-square plot (4 × √area). The true boundary comes from the Chanote (title deed) survey drawing.</li>
       <li><b>Posted date:</b> most Thai portals hide the original posting date; where unavailable, the register shows the date this tracker first saw the listing.</li>
+      <li><b>Size gauges &amp; imagery:</b> satellite imagery services are blocked by this workspace's network policy, so each card carries a true-to-scale footprint gauge instead; use the per-plot Google Earth links or the KML download to view real aerial imagery. Anchors are district-level approximations until a seller shares the Chanote location.</li>
       <li><b>Spending power</b> is inferred from the residential product that sells in each catchment (e.g. ฿3–7M townhomes on the Pink Line, ฿8–20M houses on Krungthep Kreetha, ฿60M+ ultra-luxury in Phrom Phong).</li>
       <li>USD listings converted at ≈ ฿32.5/USD. Units: 1 rai = 1,600 m²; 1 sq.wah = 4 m².</li>
       <li>Sources: FazWaz, DDproperty, Thailand-Property, Dot Property, Livinginsider, Hipflat; market context from Bangkok Post, Nation Thailand, Colliers. Data gathered via web search — portals block direct crawling.</li>
@@ -517,9 +527,28 @@ const COORDS = [
   [13.8770, 100.4430], // Ratchaphruek
   [13.7500, 100.6520]  // Ramkhamhaeng zone watch
 ];
-PLOTS.forEach((p, i) => { p.lat = COORDS[i][0]; p.lng = COORDS[i][1]; p.id = "plot-" + i; });
+/* land area in m², same order as PLOTS (null = zone watch, no single parcel) */
+const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, null];
+PLOTS.forEach((p, i) => { p.lat = COORDS[i][0]; p.lng = COORDS[i][1]; p.sqm = SQM[i]; p.id = "plot-" + i; });
 PLOTS[12].zone = true;
 const gmaps = p => "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lng;
+const gearth = p => "https://earth.google.com/web/@" + p.lat + "," + p.lng + ",0a,600d,35y,0h,0t,0r";
+
+/* true-to-scale footprint vs a football pitch (105 x 68 m), 1 m = 1 svg unit */
+function gaugeSVG(p) {
+  if (!p.sqm) return "";
+  const side = Math.sqrt(p.sqm);
+  const s = Math.round(side * 10) / 10;
+  const h = Math.max(side, 68) + 54;
+  return `<div class="cell wide gauge"><div class="k">Size gauge — footprint at true scale vs football pitch</div>
+  <svg viewBox="0 0 520 ${h.toFixed(0)}" role="img" aria-label="Plot footprint of ${p.sqm} square metres, assumed square of ${s} metres per side, drawn to scale against a 105 by 68 metre football pitch">
+    <rect class="pitch" x="12" y="22" width="105" height="68"></rect>
+    <text x="${(Math.max(side, 105) + 24).toFixed(0)}" y="58">football pitch 105 × 68 m</text>
+    <rect class="fp" x="12" y="22" width="${side.toFixed(1)}" height="${side.toFixed(1)}"></rect>
+    <text class="dim" x="12" y="14">≈ ${s} × ${s} m · ${p.sqm.toLocaleString("en-US")} m²</text>
+    <text x="12" y="${(h - 8).toFixed(0)}">assumed square — actual shape comes from the Chanote survey</text>
+  </svg></div>`;
+}
 
 function esc(s) {
   return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -606,6 +635,16 @@ function esc(s) {
   });
 })();
 
+/* ---- KML anchors for Google Earth ---- */
+(function buildKML() {
+  const placemarks = PLOTS.map(p =>
+    `<Placemark><name>${esc(p.name)}</name><description>${esc(p.district)} — ${esc(p.price)} — ${esc(p.area)}${p.zone ? " (zone watch, not a single parcel)" : ""}. District-level approximate anchor.</description><Point><coordinates>${p.lng},${p.lat},0</coordinates></Point></Placemark>`
+  ).join("");
+  const kml = `<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Bangkok Land Watch — 9 Jul 2026</name>${placemarks}</Document></kml>`;
+  document.getElementById("kml").href =
+    "data:application/vnd.google-earth.kml+xml;charset=utf-8," + encodeURIComponent(kml);
+})();
+
 /* ---- chart: horizontal bars, ฿/m², priced plots only ---- */
 (function renderChart() {
   const priced = PLOTS.filter(p => p.perM2).sort((a, b) => b.perM2 - a.perM2);
@@ -639,10 +678,11 @@ function plotCard(p) {
     <div class="plot-grid">
       <div class="cell"><div class="k">Land size</div><div class="v num">${esc(p.area)}</div></div>
       <div class="cell"><div class="k">Est. perimeter</div><div class="v num">${esc(p.perimeter)}</div></div>
-      <div class="cell"><div class="k">Transport</div><div class="v">${esc(p.transport)} · <a href="${esc(gmaps(p))}" target="_blank" rel="noopener">Google Maps ↗</a></div></div>
+      <div class="cell"><div class="k">Transport</div><div class="v">${esc(p.transport)} · <a href="${esc(gmaps(p))}" target="_blank" rel="noopener">Google Maps ↗</a> · <a href="${esc(gearth(p))}" target="_blank" rel="noopener">Google Earth ↗</a></div></div>
       <div class="cell"><div class="k">Posted / first seen</div><div class="v">${esc(p.posted)}</div></div>
       <div class="cell wide"><div class="k">Competitors in catchment</div><div class="v">${esc(p.competitors)}</div></div>
       <div class="cell wide"><div class="k">Posting detail</div><div class="v">${esc(p.detail)} <a href="${esc(p.source.url)}" target="_blank" rel="noopener">${esc(p.source.label)} ↗</a></div></div>
+      ${gaugeSVG(p)}
     </div>
   </article>`;
 }
