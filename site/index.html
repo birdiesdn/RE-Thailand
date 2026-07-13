@@ -284,17 +284,17 @@
     <p class="eyebrow">RE-Thailand · Acquisition Register</p>
     <h1>Bangkok Land Watch</h1>
     <p class="meta">
-      <strong id="count-all">15</strong> plots + 1 zone watch tracked ·
-      last swept <strong>9 July 2026 (afternoon)</strong> ·
+      <strong id="count-all">17</strong> plots + 1 zone watch tracked ·
+      last swept <strong>13 July 2026</strong> ·
       refreshes every Monday 09:00 Bangkok time
     </p>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="k">Plots on register</div><div class="v">15</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
-    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿73,515</div><div class="s">priced plots only (7 of 12)</div></div>
+    <div class="stat"><div class="k">Plots on register</div><div class="v">17</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
+    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿35,417</div><div class="s">priced plots only (10 of 17)</div></div>
     <div class="stat"><div class="k">Asking range</div><div class="v">฿7.8M – ฿1.17B</div><div class="s">Samae Dam → Phrom Phong</div></div>
-    <div class="stat"><div class="k">Cheapest per m²</div><div class="v">฿8,060</div><div class="s">Samae Dam, Bang Khun Thian</div></div>
+    <div class="stat"><div class="k">Cheapest per m²</div><div class="v">฿1,488</div><div class="s">Prachasamran Rd, Nong Chok (21-3-35 rai)</div></div>
   </div>
 
   <h2>Plot map</h2>
@@ -522,7 +522,7 @@ const PLOTS = [
   },
   {
     name: "Prachasamran Road estate site", district: "Nong Chok (far east)",
-    price: "On request", priceSub: "21-3-35 rai", perM2: null,
+    price: "฿52M", priceSub: "฿5,953/sq.wah · ฿1,488/m²", perM2: 1488,
     area: "21-3-35 rai · ≈ 34,940 m²", perimeter: "≈ 748 m (est.)",
     catchment: "outer", tier: "entry",
     transport: "Road-based; ≈ 8 km beyond MRT Pink Line Min Buri terminus",
@@ -530,6 +530,28 @@ const PLOTS = [
     competitors: "Volume housing-estate developers in outer-east Bangkok; land-bank competition more than product competition.",
     detail: "The largest site on the register — full housing-estate or land-bank scale at far-suburb pricing. A long-hold play on eastward expansion.",
     source: { label: "Thailand-Property Bangkok land", url: "https://www.thailand-property.com/land-for-sale/bangkok" }
+  },
+  {
+    name: "Tha Raeng plot", district: "Bang Khen (Watcharaphon)",
+    price: "฿24.44M", priceSub: "฿32,500/m²", perM2: 32500,
+    area: "188 sq.wah · 752 m²", perimeter: "≈ 110 m (est.)",
+    catchment: "east", tier: "mid",
+    transport: "Watcharaphon / Sukhaphiban 5 area; MRT Pink Line along Ram Inthra nearby",
+    posted: "First seen 13 Jul 2026 (weekly sweep)",
+    competitors: "Townhome and detached-house brands active around Watcharaphon's retail cluster.",
+    detail: "Mid-size plot in an established family zone with strong community retail. Suits 2–4 detached houses or a small townhome row.",
+    source: { label: "FazWaz Bangkok land", url: "https://www.fazwaz.com/land-for-sale/thailand/bangkok" }
+  },
+  {
+    name: "Lat Phrao Soi 122 plot", district: "Wang Thonglang",
+    price: "฿23M", priceSub: "≈ ฿38,333/m²", perM2: 38333,
+    area: "150 sq.wah · 600 m²", perimeter: "≈ 98 m (est.)",
+    catchment: "mid", tier: "mid",
+    transport: "Lat Phrao Soi 122; MRT Yellow Line (Mahat Thai / Lat Phrao 101 stations) zone",
+    posted: "First seen 13 Jul 2026 (weekly sweep)",
+    competitors: "Infill house builders along Lat Phrao's sois; listing pitches it for a luxury single residence.",
+    detail: "Listed as a rare plot in a high-potential urban location, ideal for a luxury residence. Yellow Line access without Yellow Line pricing yet.",
+    source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
   },
   {
     name: "Ramkhamhaeng / Krungthep Kreetha zone watch", district: "Bang Kapi–Saphan Sung",
@@ -561,12 +583,14 @@ const COORDS = [
   [13.7560, 100.6620], // Krungthep Kreetha 20
   [13.7180, 100.5840], // Khlong Toei / Gateway Ekkamai
   [13.8550, 100.8620], // Nong Chok Prachasamran
+  [13.8730, 100.6320], // Tha Raeng
+  [13.7790, 100.6075], // Lat Phrao Soi 122
   [13.7500, 100.6520]  // Ramkhamhaeng zone watch
 ];
 /* land area in m², same order as PLOTS (null = zone watch, no single parcel) */
-const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 1608, 392, 34940, null];
+const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 1608, 392, 34940, 752, 600, null];
 PLOTS.forEach((p, i) => { p.lat = COORDS[i][0]; p.lng = COORDS[i][1]; p.sqm = SQM[i]; p.id = "plot-" + i; });
-PLOTS[15].zone = true;
+PLOTS[17].zone = true;
 const gmaps = p => "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lng;
 const gearth = p => "https://earth.google.com/web/@" + p.lat + "," + p.lng + ",0a,600d,35y,0h,0t,0r";
 
@@ -731,7 +755,7 @@ function esc(s) {
       </div>
     </div>`;
   }).join("") +
-  `<p class="chart-note">8 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
+  `<p class="chart-note">7 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
 })();
 
 /* ---- register ---- */
