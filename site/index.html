@@ -284,15 +284,15 @@
     <p class="eyebrow">RE-Thailand · Acquisition Register</p>
     <h1>Bangkok Land Watch</h1>
     <p class="meta">
-      <strong id="count-all">17</strong> plots + 1 zone watch tracked ·
-      last swept <strong>13 July 2026</strong> ·
+      <strong id="count-all">18</strong> plots + 1 zone watch tracked ·
+      last swept <strong>14 July 2026</strong> ·
       refreshes every Monday 09:00 Bangkok time
     </p>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="k">Plots on register</div><div class="v">17</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
-    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿35,417</div><div class="s">priced plots only (10 of 17)</div></div>
+    <div class="stat"><div class="k">Plots on register</div><div class="v">18</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
+    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿35,417</div><div class="s">priced plots only (10 of 18)</div></div>
     <div class="stat"><div class="k">Asking range</div><div class="v">฿7.8M – ฿1.17B</div><div class="s">Samae Dam → Phrom Phong</div></div>
     <div class="stat"><div class="k">Cheapest per m²</div><div class="v">฿1,488</div><div class="s">Prachasamran Rd, Nong Chok (21-3-35 rai)</div></div>
   </div>
@@ -554,6 +554,17 @@ const PLOTS = [
     source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
   },
   {
+    name: "Lat Phrao 88/1 plot", district: "Wang Thonglang (Lat Phrao)",
+    price: "On request", priceSub: "transit-adjacent", perM2: null,
+    area: "300 sq.wah · 1,200 m²", perimeter: "≈ 139 m (est.)",
+    catchment: "mid", tier: "mid",
+    transport: "Adjacent to the MRT Yellow Line on Lat Phrao Road",
+    posted: "First seen 14 Jul 2026",
+    competitors: "Same infill-house and townhome builders as the Soi 122 plot two sois away — this corridor is filling in.",
+    detail: "Listed as high-potential land directly beside a mass-transit line. Third Lat Phrao-corridor plot on the register — a price-comparison set is forming (Soi 122 at ฿38k/m², the 1.68-rai plot at ฿26k/m²).",
+    source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
+  },
+  {
     name: "Ramkhamhaeng / Krungthep Kreetha zone watch", district: "Bang Kapi–Saphan Sung",
     price: "Zone watch", priceSub: "multiple listings live", perM2: null,
     area: "Various — DDproperty zone page", perimeter: "—",
@@ -585,12 +596,13 @@ const COORDS = [
   [13.8550, 100.8620], // Nong Chok Prachasamran
   [13.8730, 100.6320], // Tha Raeng
   [13.7790, 100.6075], // Lat Phrao Soi 122
+  [13.7935, 100.6015], // Lat Phrao 88/1
   [13.7500, 100.6520]  // Ramkhamhaeng zone watch
 ];
 /* land area in m², same order as PLOTS (null = zone watch, no single parcel) */
-const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 1608, 392, 34940, 752, 600, null];
+const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 1608, 392, 34940, 752, 600, 1200, null];
 PLOTS.forEach((p, i) => { p.lat = COORDS[i][0]; p.lng = COORDS[i][1]; p.sqm = SQM[i]; p.id = "plot-" + i; });
-PLOTS[17].zone = true;
+PLOTS[18].zone = true;
 const gmaps = p => "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lng;
 const gearth = p => "https://earth.google.com/web/@" + p.lat + "," + p.lng + ",0a,600d,35y,0h,0t,0r";
 
@@ -755,7 +767,7 @@ function esc(s) {
       </div>
     </div>`;
   }).join("") +
-  `<p class="chart-note">7 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
+  `<p class="chart-note">8 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
 })();
 
 /* ---- register ---- */
