@@ -1,6 +1,6 @@
 # SUDHINEE "BIRDIE" TRIDHIP
 
-Berkeley, CA · +1 (510) 207-481 · sudhinee.tri@berkeley.edu · linkedin.com/in/sudhinee-tridhip
+Berkeley, CA · +1 (510) 207-4817 · sudhinee.tri@berkeley.edu · linkedin.com/in/sudhinee-tridhip
 
 Architecture-trained developer with two years of end-to-end development experience in Bangkok and a
 UC Berkeley MRED+D completed May 2026. Underwrites mixed-use and residential deals from raw land

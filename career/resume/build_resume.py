@@ -106,7 +106,7 @@ run(p, "SUDHINEE “BIRDIE” TRIDHIP", bold=True, size=19, color=ACCENT)
 p = para(align=WD_ALIGN_PARAGRAPH.CENTER, space_after=5)
 run(
     p,
-    "Berkeley, CA  ·  +1 (510) 207-481  ·  sudhinee.tri@berkeley.edu  ·  "
+    "Berkeley, CA  ·  +1 (510) 207-4817  ·  sudhinee.tri@berkeley.edu  ·  "
     "linkedin.com/in/sudhinee-tridhip",
     size=9,
 )

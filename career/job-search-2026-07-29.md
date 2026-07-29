@@ -134,11 +134,10 @@ Consolidated from your six tailored variants in `Tridhip_Sudhinee_CV` into one m
 7. Fixed the typos carried through every variant: `(INDA),Second`, `Ratchada 19),6 acres`,
    `June 2023 –June 2025`.
 
-### Two things I need from you
+### Open items
 
-1. **Your phone number has nine digits** — `+1 (510) 207-481` — on the resume you've been sending
-   since January. A recruiter cannot call it. I left it as-is because I won't guess a digit. Fix it
-   in `career/resume/resume.html` (and the DOCX) before you send anything.
+1. ~~Phone number missing a digit.~~ **Fixed** — now `+1 (510) 207-4817` across the PDF, DOCX, and
+   Markdown. Worth noting the nine-digit version went out on every application since January.
 2. **Your current role is missing.** Gmail shows a Tripalink Property Management internship offer
    (May) and separately that you relocated to the Peninsula for a job starting mid-July, running to
    mid-October. I couldn't confirm the employer and title for the Bay Area one, so I left it off
