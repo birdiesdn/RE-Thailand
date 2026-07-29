@@ -138,12 +138,14 @@ Consolidated from your six tailored variants in `Tridhip_Sudhinee_CV` into one m
 
 1. ~~Phone number missing a digit.~~ **Fixed** — now `+1 (510) 207-4817` across the PDF, DOCX, and
    Markdown. Worth noting the nine-digit version went out on every application since January.
-2. **Your current role is missing.** Gmail shows a Tripalink Property Management internship offer
-   (May) and separately that you relocated to the Peninsula for a job starting mid-July, running to
-   mid-October. I couldn't confirm the employer and title for the Bay Area one, so I left it off
-   rather than invent it. Tell me the employer, title, and dates and I'll add it above The Client
-   Project — a current U.S. role materially helps, and the gap since May reads worse than a property
-   management stint does.
+2. ~~Current role missing.~~ **Added** — Arcus Housing, Project Manager Intern, San Francisco,
+   July – October 2026, procurement for two active construction projects plus the SF rental
+   portfolio. It sits first under Professional Experience. The end date is deliberate: it answers
+   "when can you start?" without anyone having to ask.
+   To make room on one page, Superdry and the 2022 playground line came off — both were doing
+   gap-filler work that a current U.S. role now does better. Sharpen the two Arcus bullets with real
+   numbers when you have them (contract values, unit counts, number of vendors) — every other entry
+   on the page carries a figure and these two shouldn't be the exception.
 
 ### Regenerating the files
 

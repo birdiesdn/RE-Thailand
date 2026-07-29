@@ -144,6 +144,22 @@ run(
 section_heading("Professional Experience")
 
 role_line(
+    "Arcus Housing",
+    " — San Francisco, CA",
+    "July – October 2026",
+)
+p = para(space_after=2)
+run(p, "Project Manager Intern", italic=True)
+
+bullet(
+    "Run procurement for two active San Francisco construction projects — vendor sourcing, bid "
+    "comparison, and tracking material and subcontractor commitments against budget."
+)
+bullet(
+    "Handle procurement and vendor coordination for the firm’s San Francisco rental portfolio."
+)
+
+role_line(
     "The Client Project Co., Ltd.",
     " — Bangkok, Thailand",
     "June 2023 – June 2025",
@@ -169,18 +185,6 @@ bullet(
     "mixed-use concept, expanding the firm’s addressable market 3x and launching a new "
     "product line."
 )
-role_line(
-    "Superdry (Thailand) Co., Ltd.",
-    " — Bangkok, Thailand",
-    "July – December 2023",
-)
-p = para(space_after=2)
-run(p, "Graphic Designer", italic=True)
-bullet(
-    "High-volume campaign artwork across social, digital, and pop-up retail; +32% online "
-    "engagement."
-)
-
 # ---------------------------------------------------------------- projects
 section_heading("Real Estate Projects")
 
@@ -191,8 +195,7 @@ role_line(
 )
 bullet(
     "Ran feasibility, zoning, and density-bonus analysis on a 2.6-acre Safeway site, using state "
-    "streamlining rather than a discretionary rezoning to hold a compliant 8-story midrise and "
-    "remove years of entitlement risk."
+    "streamlining rather than a discretionary rezoning to hold a compliant 8-story midrise."
 )
 bullet(
     "Underwrote development strategies on return on cost, cap rate, and yield-on-cost."
@@ -204,9 +207,8 @@ role_line(
     "January 2026",
 )
 bullet(
-    "Directed development strategy and underwriting for a 3-phase, 332,805 SF mixed-use project "
-    "with $680M total development value, projecting a 26.45% levered IRR and 1.92x equity "
-    "multiple."
+    "Directed strategy and underwriting for a 3-phase, 332,805 SF mixed-use project ($680M TDV), "
+    "projecting a 26.45% levered IRR and 1.92x equity multiple."
 )
 bullet(
     "Sized a 369-unit program (56% affordable) plus a med-tech incubator, and built the "
@@ -230,8 +232,8 @@ role_line(
 )
 bullet(
     "Maintain a live screening tool for 18 Bangkok land parcels — price per sq.wah, parcel "
-    "geometry from title surveys, transit access, catchment spending power, competing supply — "
-    "plus an investor brief pricing four corridor strategies."
+    "geometry, transit access, catchment spending power — plus an investor brief on four corridor "
+    "strategies."
 )
 
 # ---------------------------------------------------------------- achievements
@@ -241,12 +243,6 @@ bullet(
     [
         ("Winner, Horizontal Development", True),
         (" — RE-CU Junior: Start-Up in Real Estate, Bangkok (2023)", False),
-    ]
-)
-bullet(
-    [
-        ("Project Manager", True),
-        (", Community Creative Playground — built playground for 110 students (2022)", False),
     ]
 )
 bullet(
@@ -264,8 +260,7 @@ run(p, "Development & Finance: ", bold=True)
 run(
     p,
     "cash-flow modeling, underwriting, highest-and-best-use analysis, market feasibility, due "
-    "diligence, entitlement and zoning strategy, density bonus, leasing strategy, stakeholder "
-    "management",
+    "diligence, entitlement and zoning strategy, density bonus, procurement",
 )
 
 p = para(space_after=1)
