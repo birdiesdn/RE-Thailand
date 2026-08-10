@@ -284,15 +284,15 @@
     <p class="eyebrow">RE-Thailand · Acquisition Register</p>
     <h1>Bangkok Land Watch</h1>
     <p class="meta">
-      <strong id="count-all">23</strong> plots + 1 zone watch tracked ·
-      last swept <strong>3 August 2026</strong> ·
+      <strong id="count-all">25</strong> plots + 1 zone watch tracked ·
+      last swept <strong>10 August 2026</strong> ·
       refreshes every Monday 09:00 Bangkok time
     </p>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="k">Plots on register</div><div class="v">23</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
-    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿32,500</div><div class="s">priced plots only (13 of 23)</div></div>
+    <div class="stat"><div class="k">Plots on register</div><div class="v">25</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
+    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿29,478</div><div class="s">priced plots only (14 of 25)</div></div>
     <div class="stat"><div class="k">Asking range</div><div class="v">฿7.8M – ฿3.36B</div><div class="s">Samae Dam → Wireless Road</div></div>
     <div class="stat"><div class="k">Cheapest per m²</div><div class="v">฿1,488</div><div class="s">Prachasamran Rd, Nong Chok (21-3-35 rai)</div></div>
   </div>
@@ -620,6 +620,28 @@ const PLOTS = [
     source: { label: "Thailand-Property Bangkok land", url: "https://www.thailand-property.com/land-for-sale/bangkok" }
   },
   {
+    name: "Lat Phrao Road small plot (20 × 30 m)", district: "Lat Phrao",
+    price: "฿9.46M", priceSub: "฿65,000/sq.wah · ฿16,250/m²", perM2: 16250,
+    area: "146 sq.wah · 584 m²", perimeter: "100 m (exact — 20 × 30 m)",
+    catchment: "mid", tier: "entry",
+    transport: "Lat Phrao Road corridor; MRT Blue Line and Yellow Line interchange at Lat Phrao",
+    posted: "Listing refreshed 23 May 2026 · first seen 10 Aug 2026",
+    competitors: "93 Lat Phrao plots on market averaging ฿37,323/m² — this asks 56% below that average.",
+    detail: "Fourth Lat Phrao plot and the only one with confirmed dimensions: a clean 20 × 30 m rectangle, so the 100 m perimeter is exact rather than assumed. Asks ฿65,000/sq.wah against a ฿150k–฿200k/wah official appraisal band for Lat Phrao Road — worth understanding why. Small, but the cheapest way onto this corridor.",
+    source: { label: "Thailand-Property Lat Phrao", url: "https://www.thailand-property.com/land-for-sale/bangkok/lat-phrao/lat-phrao" }
+  },
+  {
+    name: "Hua Mak freehold parcel (5 rai)", district: "Bang Kapi (Hua Mak)",
+    price: "On request", priceSub: "freehold title, 5-rai scale", perM2: null,
+    area: "5 rai 22 sq.wah · 2,022 sq.wah · 8,088 m²", perimeter: "≈ 360 m (est.)",
+    catchment: "east", tier: "mid",
+    transport: "Near Ramkhamhaeng University; Airport Link Hua Mak and the Orange Line alignment",
+    posted: "First seen 10 Aug 2026 (weekly sweep)",
+    competitors: "Student-housing and low-rise operators around Ramkhamhaeng; few parcels this size trade freehold here.",
+    detail: "The Ramkhamhaeng zone watch finally produced a real parcel. At 8,088 m² freehold this is the second-largest tracked plot after Nong Chok — genuine masterplan scale on a corridor the investor brief flagged as Growth tier. Marketed for logistics/office, which usually means residential buyers haven't bid it up. Price on request; getting that number is this week's highest-value follow-up.",
+    source: { label: "Dot Property Bangkok land", url: "https://www.dotproperty.co.th/en/land-for-sale/bangkok" }
+  },
+  {
     name: "Ramkhamhaeng / Krungthep Kreetha zone watch", district: "Bang Kapi–Saphan Sung",
     price: "Zone watch", priceSub: "multiple listings live", perM2: null,
     area: "Various — DDproperty zone page", perimeter: "—",
@@ -657,12 +679,14 @@ const COORDS = [
   [13.7050, 100.3560], // Nong Khaem
   [13.7130, 100.5290], // Sathorn Chan 18/7
   [13.7380, 100.5470], // Wireless Road
+  [13.8100, 100.5850], // Lat Phrao Road 20x30
+  [13.7560, 100.6430], // Hua Mak 5 rai
   [13.7500, 100.6520]  // Ramkhamhaeng zone watch
 ];
 /* land area in m², same order as PLOTS (null = zone watch, no single parcel) */
-const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 1608, 392, 34940, 752, 600, 1200, null, 1600, 1564, 1328, 3836, null];
+const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 1608, 392, 34940, 752, 600, 1200, null, 1600, 1564, 1328, 3836, 584, 8088, null];
 PLOTS.forEach((p, i) => { p.lat = COORDS[i][0]; p.lng = COORDS[i][1]; p.sqm = SQM[i]; p.id = "plot-" + i; });
-PLOTS[23].zone = true;
+PLOTS[25].zone = true;
 const gmaps = p => "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lng;
 const gearth = p => "https://earth.google.com/web/@" + p.lat + "," + p.lng + ",0a,600d,35y,0h,0t,0r";
 
@@ -827,7 +851,7 @@ function esc(s) {
       </div>
     </div>`;
   }).join("") +
-  `<p class="chart-note">10 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
+  `<p class="chart-note">11 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
 })();
 
 /* ---- register ---- */
