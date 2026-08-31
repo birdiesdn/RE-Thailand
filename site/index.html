@@ -184,6 +184,12 @@
   .map-legend .lnote { font-size: 12px; color: var(--ink-3); margin-left: auto; }
   .map-legend .lnote a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
   .map-legend .lnote a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .linkbtn {
+    background: none; border: 0; padding: 0; font: inherit; cursor: pointer;
+    color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px;
+  }
+  .linkbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .linkbtn[disabled] { color: var(--ink-3); cursor: default; text-decoration: none; }
   .plot.flash { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
   @media (prefers-reduced-motion: no-preference) {
     .plot { transition: border-color 0.4s, box-shadow 0.4s; }
@@ -307,7 +313,7 @@
       <span class="chip c-mid">Mid-city transit</span>
       <span class="chip c-east">East growth corridor</span>
       <span class="chip c-outer">Outer suburban</span>
-      <span class="lnote"><a id="kml" download="bangkok-land-watch.kml" href="#">Download all anchors as KML for Google Earth ↓</a> · Dashed marker = zone watch</span>
+      <span class="lnote"><span id="csvwrap" hidden><button type="button" class="linkbtn" id="csv">Download all anchors as CSV for Google Earth ↓</button><span id="csvnote"></span> · </span>Dashed marker = zone watch</span>
     </div>
   </div>
 
@@ -342,7 +348,7 @@
     <ul>
       <li><b>Perimeter</b> is not published on Thai listings — figures here are estimates assuming a near-square plot (4 × √area). The true boundary comes from the Chanote (title deed) survey drawing.</li>
       <li><b>Posted date:</b> most Thai portals hide the original posting date; where unavailable, the register shows the date this tracker first saw the listing.</li>
-      <li><b>Size gauges &amp; imagery:</b> satellite imagery services are blocked by this workspace's network policy, so each card carries a true-to-scale footprint gauge instead; use the per-plot Google Earth links or the KML download to view real aerial imagery. Anchors are district-level approximations until a seller shares the Chanote location.</li>
+      <li><b>Size gauges &amp; imagery:</b> satellite imagery services are blocked by this workspace's network policy, so each card carries a true-to-scale footprint gauge instead; use the per-plot Google Earth links, or the CSV anchor export (Google Earth Pro: File → Import), to view real aerial imagery. Anchors are district-level approximations until a seller shares the Chanote location.</li>
       <li><b>Spending power</b> is inferred from the residential product that sells in each catchment (e.g. ฿3–7M townhomes on the Pink Line, ฿8–20M houses on Krungthep Kreetha, ฿60M+ ultra-luxury in Phrom Phong).</li>
       <li>USD listings converted at ≈ ฿32.5/USD. Units: 1 rai = 1,600 m²; 1 sq.wah = 4 m².</li>
       <li>Sources: FazWaz, DDproperty, Thailand-Property, Dot Property, Livinginsider, Hipflat; market context from Bangkok Post, Nation Thailand, Colliers. Data gathered via web search — portals block direct crawling.</li>
@@ -874,14 +880,45 @@ function esc(s) {
   });
 })();
 
-/* ---- KML anchors for Google Earth ---- */
-(function buildKML() {
-  const placemarks = PLOTS.map(p =>
-    `<Placemark><name>${esc(p.name)}</name><description>${esc(p.district)} — ${esc(p.price)} — ${esc(p.area)}${p.zone ? " (zone watch, not a single parcel)" : ""}. District-level approximate anchor.</description><Point><coordinates>${p.lng},${p.lat},0</coordinates></Point></Placemark>`
-  ).join("");
-  const kml = `<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Bangkok Land Watch — 9 Jul 2026</name>${placemarks}</Document></kml>`;
-  document.getElementById("kml").href =
-    "data:application/vnd.google-earth.kml+xml;charset=utf-8," + encodeURIComponent(kml);
+/* ---- anchor export for Google Earth (CSV point import) ---- */
+(function buildExport() {
+  const btn = document.getElementById("csv");
+  const note = document.getElementById("csvnote");
+  const q = v => '"' + String(v).replace(/"/g, '""') + '"';
+  const csv = [
+    ["Name", "District", "Price", "Area", "Type", "Latitude", "Longitude"].join(","),
+    ...PLOTS.map(p => [
+      q(p.name), q(p.district), q(p.price), q(p.area),
+      q(p.zone ? "zone watch (not a single parcel)" : "plot"),
+      p.lat, p.lng
+    ].join(","))
+  ].join("\r\n");
+
+  /* The viewer sandbox blocks plain download links, so the file is handed over
+     through the downloads capability. Absent it, the button stays hidden. */
+  (window.claude && typeof window.claude.use === "function"
+    ? window.claude.use("downloads")
+    : Promise.resolve(null)
+  ).then(downloads => {
+    if (!downloads) return;
+    document.getElementById("csvwrap").hidden = false;
+    btn.addEventListener("click", async () => {
+      btn.disabled = true;
+      note.textContent = "";
+      try {
+        await downloads.save({ filename: "bangkok-land-watch-anchors.csv", data: csv });
+      } catch (err) {
+        const code = err && err.code;
+        if (code !== "declined") {
+          note.textContent = code === "rate_limited"
+            ? " — another prompt is open, try again in a moment"
+            : " — download unavailable in this view";
+        }
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }, () => {});
 })();
 
 /* ---- chart: horizontal bars, ฿/m², priced plots only ---- */
