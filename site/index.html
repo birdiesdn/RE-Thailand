@@ -284,15 +284,15 @@
     <p class="eyebrow">RE-Thailand · Acquisition Register</p>
     <h1>Bangkok Land Watch</h1>
     <p class="meta">
-      <strong id="count-all">25</strong> plots + 1 zone watch tracked ·
-      last swept <strong>10 August 2026</strong> ·
+      <strong id="count-all">29</strong> plots + 1 zone watch tracked ·
+      last swept <strong>31 August 2026</strong> ·
       refreshes every Monday 09:00 Bangkok time
     </p>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="k">Plots on register</div><div class="v">25</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
-    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿29,478</div><div class="s">priced plots only (14 of 25)</div></div>
+    <div class="stat"><div class="k">Plots on register</div><div class="v">29</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
+    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿26,455</div><div class="s">priced plots only (17 of 29)</div></div>
     <div class="stat"><div class="k">Asking range</div><div class="v">฿7.8M – ฿3.36B</div><div class="s">Samae Dam → Wireless Road</div></div>
     <div class="stat"><div class="k">Cheapest per m²</div><div class="v">฿1,488</div><div class="s">Prachasamran Rd, Nong Chok (21-3-35 rai)</div></div>
   </div>
@@ -501,12 +501,12 @@ const PLOTS = [
   {
     name: "Krungthep Kreetha 20 Soi 7 plot", district: "Saphan Sung (Krungthep Kreetha)",
     price: "On request", priceSub: "international-school belt", perM2: null,
-    area: "1-0-2 rai · 1,608 m²", perimeter: "≈ 160 m (est.)",
+    area: "1-1-62 rai · 2,248 m²", perimeter: "≈ 190 m (est.)",
     catchment: "east", tier: "high",
     transport: "Krungthep Kreetha road; near Brighton College & Wellington College international schools and Unico Grande golf",
-    posted: "First seen 9 Jul 2026 (afternoon sweep)",
+    posted: "First seen 9 Jul 2026 · size revised 31 Aug 2026",
     competitors: "The zone watch called this corridor: AP's The Palazzo, Sansiri's Burasiri, 40+ premium projects competing for exactly this school-belt buyer.",
-    detail: "Rare single-rai plot inside the international-school belt — the amenity that anchors ฿15M+ house demand here. Suits 1–3 premium detached houses.",
+    detail: "Rare plot inside the international-school belt — the amenity that anchors ฿15M+ house demand here. Suits 2–4 premium detached houses. Size revised up this sweep from 1,608 m² to 2,248 m² (+40%) after the listing restated it as 1 rai 1 ngan 62 sq.wah; confirm against the Chanote before pricing.",
     source: { label: "Thailand-Property Bangkok land", url: "https://www.thailand-property.com/land-for-sale/bangkok" }
   },
   {
@@ -642,6 +642,50 @@ const PLOTS = [
     source: { label: "Dot Property Bangkok land", url: "https://www.dotproperty.co.th/en/land-for-sale/bangkok" }
   },
   {
+    name: "Chokchai 4 plot", district: "Lat Phrao (Chokchai 4)",
+    price: "฿6.11M", priceSub: "฿77,000/sq.wah · ฿19,238/m²", perM2: 19238,
+    area: "≈ 79 sq.wah · ≈ 317 m²", perimeter: "≈ 71 m (est.)",
+    catchment: "mid", tier: "entry",
+    transport: "Chokchai 4 / Lat Phrao Road; MRT Yellow Line and Blue Line interchange nearby",
+    posted: "Listed 13 Aug 2026",
+    competitors: "Dense infill-house market along Chokchai 4's sois; small plots turn over quickly here.",
+    detail: "Smallest priced plot on the register and the lowest absolute ticket at ฿6.11M — the cheapest way to own anything on the Lat Phrao corridor. Too small for a project; a single house or a hold. Asks ฿77,000/sq.wah against the ฿150k–฿200k/wah Lat Phrao Road appraisal band.",
+    source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
+  },
+  {
+    name: "Lat Krabang plot near Suvarnabhumi Motorway", district: "Lat Krabang",
+    price: "฿14M", priceSub: "฿35,354/sq.wah · ฿8,838/m²", perM2: 8838,
+    area: "396 sq.wah · 1,584 m²", perimeter: "≈ 159 m (est.)",
+    catchment: "outer", tier: "entry",
+    transport: "Beside the Suvarnabhumi Motorway; Airport Link Lat Krabang serves the district",
+    posted: "Listed 13 Aug 2026",
+    competitors: "Airport-adjacent housing and logistics buyers compete for the same land here.",
+    detail: "Third-cheapest per m² on the register. Airport-corridor location cuts both ways — motorway access is real, but aircraft noise and industrial neighbours limit the residential premium. Check the flight path before committing.",
+    source: { label: "Livinginsider land search", url: "https://www.livinginsider.com/searchword_en/Land/Buysell/1/property-listing-land-for-sale.html" }
+  },
+  {
+    name: "Ramkhamhaeng 359 sq.wah plot", district: "Bang Kapi (Ramkhamhaeng)",
+    price: "≈ ฿52.8M", priceSub: "≈ ฿147,000/sq.wah · ≈ ฿36,750/m² — derived, see note", perM2: 36750,
+    area: "359.1 sq.wah · 1,436 m²", perimeter: "≈ 152 m (est.)",
+    catchment: "east", tier: "high",
+    transport: "Ramkhamhaeng Road; MRT Orange Line alignment and Airport Link Ramkhamhaeng",
+    posted: "First seen 31 Aug 2026 (weekly sweep)",
+    competitors: "Student-housing, low-rise condo and infill-house builders along Ramkhamhaeng.",
+    detail: "Price shown is derived from a quoted ฿147,000/sq.wah average rate rather than a stated asking figure — treat the ฿52.8M total as indicative until confirmed. Useful either way: it is the first per-wah rate the register has captured for Ramkhamhaeng proper, and it prices the corridor at roughly 4× Krungthep Kreetha's cheaper pockets.",
+    source: { label: "DDproperty — Ramkhamhaeng land", url: "https://www.ddproperty.com/en/land-for-sale/in-ramkhamhaeng-bangkapi-krungthepkreetha-sukhapiban-3-6610009" }
+  },
+  {
+    name: "Krungthep Kreetha new-section estate site", district: "Saphan Sung (Krungthep Kreetha)",
+    price: "On request", priceSub: "subdividable — ultra-luxury pitch", perM2: null,
+    area: "7-2-74 rai · ≈ 12,296 m²", perimeter: "≈ 444 m (est.)",
+    catchment: "east", tier: "ultra",
+    transport: "Krungthep Kreetha new section; expressway and Airport Link Ban Thap Chang access",
+    posted: "First seen 17 Aug 2026 (weekly sweep)",
+    competitors: "AP's The Palazzo, Sansiri's Burasiri and the 40+ project cluster — this is the corridor's core competitive set.",
+    detail: "Third-largest site tracked and explicitly marketed as subdividable for an ultra-luxury scheme, which is the exact product the Krungthep Kreetha school belt absorbs. Sized for a full gated project rather than a one-off build — the most complete development opportunity on the register if the price works.",
+    source: { label: "Thailand-Property Bangkok land", url: "https://www.thailand-property.com/land-for-sale/bangkok" }
+  },
+  {
     name: "Ramkhamhaeng / Krungthep Kreetha zone watch", district: "Bang Kapi–Saphan Sung",
     price: "Zone watch", priceSub: "multiple listings live", perM2: null,
     area: "Various — DDproperty zone page", perimeter: "—",
@@ -681,12 +725,16 @@ const COORDS = [
   [13.7380, 100.5470], // Wireless Road
   [13.8100, 100.5850], // Lat Phrao Road 20x30
   [13.7560, 100.6430], // Hua Mak 5 rai
+  [13.7960, 100.5900], // Chokchai 4
+  [13.7220, 100.7580], // Lat Krabang / Suvarnabhumi Motorway
+  [13.7620, 100.6230], // Ramkhamhaeng 359 sq.wah
+  [13.7620, 100.6700], // Krungthep Kreetha new section
   [13.7500, 100.6520]  // Ramkhamhaeng zone watch
 ];
 /* land area in m², same order as PLOTS (null = zone watch, no single parcel) */
-const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 1608, 392, 34940, 752, 600, 1200, null, 1600, 1564, 1328, 3836, 584, 8088, null];
+const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 2248, 392, 34940, 752, 600, 1200, null, 1600, 1564, 1328, 3836, 584, 8088, 317, 1584, 1436, 12296, null];
 PLOTS.forEach((p, i) => { p.lat = COORDS[i][0]; p.lng = COORDS[i][1]; p.sqm = SQM[i]; p.id = "plot-" + i; });
-PLOTS[25].zone = true;
+PLOTS[29].zone = true;
 const gmaps = p => "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lng;
 const gearth = p => "https://earth.google.com/web/@" + p.lat + "," + p.lng + ",0a,600d,35y,0h,0t,0r";
 
@@ -851,7 +899,7 @@ function esc(s) {
       </div>
     </div>`;
   }).join("") +
-  `<p class="chart-note">11 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
+  `<p class="chart-note">12 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
 })();
 
 /* ---- register ---- */
