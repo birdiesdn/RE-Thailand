@@ -290,16 +290,16 @@
     <p class="eyebrow">RE-Thailand · Acquisition Register</p>
     <h1>Bangkok Land Watch</h1>
     <p class="meta">
-      <strong id="count-all">31</strong> plots + 1 zone watch tracked ·
-      last swept <strong>7 September 2026</strong> ·
+      <strong id="count-all">36</strong> plots + 1 zone watch tracked ·
+      last swept <strong>28 September 2026</strong> ·
       refreshes every Monday 09:00 Bangkok time
     </p>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="k">Plots on register</div><div class="v">31</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
-    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿26,455</div><div class="s">priced plots only (17 of 31)</div></div>
-    <div class="stat"><div class="k">Asking range</div><div class="v">฿7.8M – ฿3.36B</div><div class="s">Samae Dam → Wireless Road</div></div>
+    <div class="stat"><div class="k">Plots on register</div><div class="v">36</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
+    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿31,022</div><div class="s">priced plots only (23 of 36)</div></div>
+    <div class="stat"><div class="k">Asking range</div><div class="v">฿6.11M – ฿3.36B</div><div class="s">Chokchai 4 → Wireless Road</div></div>
     <div class="stat"><div class="k">Cheapest per m²</div><div class="v">฿1,488</div><div class="s">Prachasamran Rd, Nong Chok (21-3-35 rai)</div></div>
   </div>
 
@@ -693,13 +693,13 @@ const PLOTS = [
   },
   {
     name: "On Nut 63 plot", district: "Prawet (On Nut)",
-    price: "On request", priceSub: "2-rai scale on a named soi", perM2: null,
+    price: "฿220M", priceSub: "฿258,824/sq.wah · ฿64,706/m²", perM2: 64706,
     area: "2-0-50 rai · 850 sq.wah · 3,400 m²", perimeter: "≈ 233 m (est.)",
     catchment: "east", tier: "high",
     transport: "On Nut Soi 63; BTS On Nut on the Sukhumvit line serves the corridor head",
-    posted: "First seen 7 Sep 2026 (weekly sweep)",
+    posted: "First seen 7 Sep 2026 · priced 14 Sep 2026",
     competitors: "Low-rise condo and townhome builders working the On Nut sois behind Sukhumvit.",
-    detail: "Two-rai plot on a named soi in the On Nut absorption zone — large enough for a townhome cluster or small low-rise, and on the same corridor as the Phra Khanong Nuea plot the register has carried at ฿73,515/m². That comparable makes this one worth pricing.",
+    detail: "Now priced at ฿220M. At ฿64,706/m² it asks just under the Phra Khanong Nuea comparable (฿73,515/m²) despite sitting deeper into Prawet — a small discount for a materially less central position, so the ask looks full rather than opportunistic.",
     source: { label: "Thailand-Property Bangkok land", url: "https://www.thailand-property.com/land-for-sale/bangkok" }
   },
   {
@@ -707,10 +707,65 @@ const PLOTS = [
     price: "On request", priceSub: "33 m frontage stated", perM2: null,
     area: "533 sq.wah · 2,132 m²", perimeter: "≈ 210 m (from stated 33 × 72 m)",
     catchment: "east", tier: "high",
-    transport: "Suan Luang; Rama 9 / Pattanakarn road network, near the Motorway 7 ramps",
-    posted: "First seen 7 Sep 2026 (weekly sweep)",
+    transport: "Suan Luang, near Airport Rail Link Ramkhamhaeng; Rama 9 / Pattanakarn road network and the Motorway 7 ramps",
+    posted: "First seen 7 Sep 2026 · detail updated 14 Sep 2026",
     competitors: "Premium single-house and pool-villa builders riding Rama 9 'new CBD' spillover.",
-    detail: "Second Suan Luang plot after Rama 9 Soi 49, and far larger. Wide 33 m frontage is the useful detail — it allows a multi-unit road-facing layout rather than a single deep house. Note the listing's own numbers disagree slightly: 533 sq.wah is 2,132 m², while 33 × 72 m computes to 2,376 m², so the plot is likely irregular. Confirm against the Chanote.",
+    detail: "Second Suan Luang plot after Rama 9 Soi 49, and far larger. Now described as rectangular and confirmed near ARL Ramkhamhaeng — rail access this plot was not previously credited with. The 33 m frontage allows a multi-unit road-facing layout rather than a single deep house. One caveat stands: 533 sq.wah is 2,132 m², while 33 × 72 m computes to 2,376 m², so the stated dimensions are probably rounded. Confirm against the Chanote.",
+    source: { label: "Hipflat Bangkok land", url: "https://www.hipflat.com/land-for-sale/bangkok" }
+  },
+  {
+    name: "Suan Luang compact plot", district: "Suan Luang",
+    price: "฿10M", priceSub: "฿99,600/sq.wah · ฿24,900/m²", perM2: 24900,
+    area: "≈ 100 sq.wah · ≈ 402 m²", perimeter: "≈ 80 m (est.)",
+    catchment: "east", tier: "mid",
+    transport: "Suan Luang; Rama 9 / Pattanakarn network, ARL Ramkhamhaeng in the district",
+    posted: "First seen 14 Sep 2026 (weekly sweep)",
+    competitors: "Infill single-house builders in Suan Luang's residential sois.",
+    detail: "Third Suan Luang plot and by far the smallest — a single-house or hold ticket at ฿10M. Its value to the register is as a price anchor: it gives Suan Luang a per-m² rate (฿24,900) that the two larger unpriced plots in the same district can be measured against.",
+    source: { label: "Hipflat Suan Luang land", url: "https://www.hipflat.com/land-for-sale/bangkok/suan-luang" }
+  },
+  {
+    name: "Sukhumvit 77 / On Nut 26 plot", district: "Prawet–Watthana (On Nut)",
+    price: "฿34M", priceSub: "฿124,088/sq.wah · ฿31,022/m²", perM2: 31022,
+    area: "274 sq.wah · 1,096 m²", perimeter: "≈ 132 m (est.)",
+    catchment: "mid", tier: "high",
+    transport: "Sukhumvit 77 (On Nut Road) at Soi 26; BTS On Nut on the Sukhumvit line",
+    posted: "First seen 21 Sep 2026 (weekly sweep)",
+    competitors: "Townhome and boutique low-rise builders along the Sukhumvit 77 spine.",
+    detail: "On the On Nut arterial rather than deep in a soi, and priced at less than half the On Nut 63 rate (฿31,022 vs ฿64,706/m²) despite the better road position. That gap is the most interesting pricing anomaly on the register this month — one of the two asks is wrong, and it is worth finding out which.",
+    source: { label: "Thailand-Property Bangkok land", url: "https://www.thailand-property.com/land-for-sale/bangkok" }
+  },
+  {
+    name: "Watthana 311 sq.wah plot", district: "Watthana",
+    price: "฿155.5M", priceSub: "฿500,000/sq.wah · ฿125,000/m²", perM2: 125000,
+    area: "311 sq.wah · 1,244 m²", perimeter: "≈ 152 m (from stated 15 × 61 m)",
+    catchment: "cbd", tier: "ultra",
+    transport: "Watthana; the Sukhumvit BTS spine runs through the district",
+    posted: "First seen 21 Sep 2026 (weekly sweep)",
+    competitors: "Luxury low-rise, boutique condo and branded-residence builders across Watthana.",
+    detail: "A clean ฿500,000/sq.wah ask — the round number suggests a seller anchored to the Sukhumvit appraisal band rather than to the plot. The stated 15 × 61 m gives 915 m², against 1,244 m² from the sq.wah figure; as with the Suan Luang plot, the dimensions look rounded. The narrow 15 m frontage is the real constraint on what can be built.",
+    source: { label: "FazWaz Bangkok land", url: "https://www.fazwaz.com/land-for-sale/thailand/bangkok" }
+  },
+  {
+    name: "Prawet east-zone estate site", district: "Prawet",
+    price: "฿616M", priceSub: "฿349,702/sq.wah · ฿87,401/m²", perM2: 87401,
+    area: "4-1-62 rai · 1,762 sq.wah · 7,048 m²", perimeter: "≈ 336 m (est.)",
+    catchment: "east", tier: "ultra",
+    transport: "Prawet, Bangkok's eastern expansion zone; Sukhumvit 77 and Motorway 7 access",
+    posted: "First seen 21 Sep 2026 (weekly sweep)",
+    competitors: "Estate-scale developers assembling in the eastern growth belt.",
+    detail: "Fourth-largest site on the register and the most expensive per m² outside the CBD. At ฿87,401/m² it asks more than the Phra Khanong Nuea plot despite being further out — the seller is pricing the assembly premium of a 4-rai contiguous parcel, which is defensible but leaves little margin for a buyer.",
+    source: { label: "Thailand-Property Bangkok land", url: "https://www.thailand-property.com/land-for-sale/bangkok" }
+  },
+  {
+    name: "Bang Kapi 1-rai plot", district: "Bang Kapi",
+    price: "฿19M", priceSub: "฿47,444/sq.wah · ฿11,861/m² — see currency note", perM2: 11861,
+    area: "≈ 400 sq.wah · ≈ 1,602 m²", perimeter: "≈ 160 m (est.)",
+    catchment: "east", tier: "mid",
+    transport: "Bang Kapi; MRT Yellow Line and the Ramkhamhaeng corridor serve the district",
+    posted: "First seen 21 Sep 2026 (weekly sweep)",
+    competitors: "Townhome and low-rise builders around Bang Kapi's retail core.",
+    detail: "Fourth-cheapest per m² on the register. The source rendered the price with a dollar sign, but $19M over 1,602 m² would be ฿385,000/m² — CBD pricing in a mid-city district, which is not credible. Read as baht the figures are consistent with Bang Kapi, so that is how the register records it. Verify the currency before acting.",
     source: { label: "Hipflat Bangkok land", url: "https://www.hipflat.com/land-for-sale/bangkok" }
   },
   {
@@ -759,12 +814,17 @@ const COORDS = [
   [13.7620, 100.6700], // Krungthep Kreetha new section
   [13.6950, 100.6580], // On Nut 63
   [13.7350, 100.6350], // Suan Luang 533 sq.wah
+  [13.7400, 100.6280], // Suan Luang compact
+  [13.7080, 100.6010], // Sukhumvit 77 / On Nut 26
+  [13.7320, 100.5820], // Watthana 311 sq.wah
+  [13.7000, 100.6900], // Prawet east-zone estate
+  [13.7650, 100.6470], // Bang Kapi 1 rai
   [13.7500, 100.6520]  // Ramkhamhaeng zone watch
 ];
 /* land area in m², same order as PLOTS (null = zone watch, no single parcel) */
-const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 2248, 392, 34940, 752, 600, 1200, null, 1600, 1564, 1328, 3836, 584, 8088, 317, 1584, 1436, 12296, 3400, 2132, null];
+const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 2248, 392, 34940, 752, 600, 1200, null, 1600, 1564, 1328, 3836, 584, 8088, 317, 1584, 1436, 12296, 3400, 2132, 402, 1096, 1244, 7048, 1602, null];
 PLOTS.forEach((p, i) => { p.lat = COORDS[i][0]; p.lng = COORDS[i][1]; p.sqm = SQM[i]; p.id = "plot-" + i; });
-PLOTS[31].zone = true;
+PLOTS[36].zone = true;
 const gmaps = p => "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lng;
 const gearth = p => "https://earth.google.com/web/@" + p.lat + "," + p.lng + ",0a,600d,35y,0h,0t,0r";
 
@@ -960,7 +1020,7 @@ function esc(s) {
       </div>
     </div>`;
   }).join("") +
-  `<p class="chart-note">14 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
+  `<p class="chart-note">13 further plots are price-on-request (plus the unpriced zone watch) and excluded here — see the register below.</p>`;
 })();
 
 /* ---- register ---- */
