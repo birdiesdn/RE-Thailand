@@ -290,16 +290,16 @@
     <p class="eyebrow">RE-Thailand · Acquisition Register</p>
     <h1>Bangkok Land Watch</h1>
     <p class="meta">
-      <strong id="count-all">47</strong> plots + 1 zone watch tracked ·
-      last swept <strong>19 October 2026</strong> ·
+      <strong id="count-all">52</strong> plots + 1 zone watch tracked ·
+      last swept <strong>26 October 2026</strong> ·
       refreshes every Monday 09:00 Bangkok time
     </p>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="k">Plots on register</div><div class="v">47</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
-    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿30,511</div><div class="s">priced plots only (34 of 47)</div></div>
-    <div class="stat"><div class="k">Asking range</div><div class="v">฿6.11M – ฿3.36B</div><div class="s">Chokchai 4 → Wireless Road</div></div>
+    <div class="stat"><div class="k">Plots on register</div><div class="v">52</div><div class="s">across 4 corridor types, plus the Ramkhamhaeng zone watch</div></div>
+    <div class="stat"><div class="k">Median asking / m²</div><div class="v">฿30,000</div><div class="s">priced plots only (39 of 52)</div></div>
+    <div class="stat"><div class="k">Asking range</div><div class="v">฿3.28M – ฿3.36B</div><div class="s">Min Buri → Wireless Road</div></div>
     <div class="stat"><div class="k">Cheapest per m²</div><div class="v">฿1,488</div><div class="s">Prachasamran Rd, Nong Chok (21-3-35 rai)</div></div>
   </div>
 
@@ -890,6 +890,61 @@ const PLOTS = [
     source: { label: "Hipflat Bangkok land", url: "https://www.hipflat.co.th/en/land-for-sale/bangkok" }
   },
   {
+    name: "Din Daeng plot", district: "Din Daeng",
+    price: "฿17M", priceSub: "฿161,905/sq.wah · ฿40,476/m²", perM2: 40476,
+    area: "105 sq.wah · 420 m²", perimeter: "≈ 82 m (est.)",
+    catchment: "mid", tier: "high",
+    transport: "Din Daeng; MRT Blue Line Phra Ram 9 / Thailand Cultural Centre and the Vibhavadi corridor",
+    posted: "Listing refreshed 11–13 Oct 2026 (PropertyHub)",
+    competitors: "Dense mid-city infill — condo and small residential builders between Ratchada and Vibhavadi.",
+    detail: "Worth a close look for a reason outside the listing: your own 2023 Google Earth study, \"Catchment Analysis for Din Daeng Residence\", mapped 35 amenity anchors across exactly this district — Central Rama 9, The Street Ratchada, Esplanade, Din Daeng and Sri Din Daeng markets, UTCC, Chatuchak Park. That catchment work already exists and can be applied to this parcel directly.",
+    source: { label: "PropertyHub Bangkok land", url: "https://propertyhub.in.th/en/land-for-sale/bangkok" }
+  },
+  {
+    name: "Min Buri 345 sq.wah plot", district: "Min Buri (east)",
+    price: "฿3.28M", priceSub: "฿9,500/sq.wah · ฿2,375/m²", perM2: 2375,
+    area: "345 sq.wah · 1,380 m²", perimeter: "≈ 149 m (est.)",
+    catchment: "outer", tier: "entry",
+    transport: "Min Buri; MRT Pink Line terminus and the Orange Line eastern depot",
+    posted: "Listing refreshed 11–13 Oct 2026 (PropertyHub)",
+    competitors: "Outer-east estate developers land-banking around the Pink Line terminus.",
+    detail: "Lowest total price on the register at ฿3.28M, and second-cheapest per m² behind Nong Chok. Gives Min Buri a real parcel to sit beside the per-rai rate already tracked — and at ฿2,375/m² it asks well under half that ฿5,625/m² quote, so the two together bracket the district.",
+    source: { label: "PropertyHub Bangkok land", url: "https://propertyhub.in.th/en/land-for-sale/bangkok" }
+  },
+  {
+    name: "Prawet 389 sq.wah plot", district: "Prawet",
+    price: "฿33.07M", priceSub: "฿85,000/sq.wah · ฿21,250/m²", perM2: 21250,
+    area: "389 sq.wah · 1,556 m²", perimeter: "≈ 158 m (est.)",
+    catchment: "east", tier: "high",
+    transport: "Prawet; Sukhumvit 77 / On Nut corridor and Motorway 7 access",
+    posted: "Listing refreshed 11–13 Oct 2026 (PropertyHub)",
+    competitors: "The On Nut–Prawet low-rise cluster; AP Thailand active in the immediate area.",
+    detail: "Fifth Prawet plot tracked, and it lands mid-range: ฿21,250/m² against ฿12,500 (the AP-adjacent rai), ฿64,706 (On Nut 63) and ฿87,401 (the 4-rai estate site). Prawet now has enough points to read as a curve rather than a guess.",
+    source: { label: "PropertyHub Bangkok land", url: "https://propertyhub.in.th/en/land-for-sale/bangkok" }
+  },
+  {
+    name: "Sukhumvit 13 plot", district: "Watthana (Nana–Asoke)",
+    price: "≈ ฿206M", priceSub: "฿750,000/sq.wah · ฿187,500/m²", perM2: 187500,
+    area: "275 sq.wah · 1,100 m²", perimeter: "≈ 133 m (est.)",
+    catchment: "cbd", tier: "ultra",
+    transport: "Sukhumvit Soi 13; BTS Nana and Asoke both within walking distance",
+    posted: "First seen 26 Oct 2026 — source page undated",
+    competitors: "Hotel, serviced-apartment and branded-residence operators in the Nana–Asoke stretch.",
+    detail: "Asks exactly the ฿750,000/sq.wah Sukhumvit Road appraisal figure — a seller pricing to the official benchmark rather than to the parcel. Third Sukhumvit trophy plot tracked, between Soi 5 and Soi 15. The source page carries no date, so treat the ask as indicative.",
+    source: { label: "Hipflat Bangkok land", url: "https://www.hipflat.com/land-for-sale/bangkok" }
+  },
+  {
+    name: "Lak Si compact plot", district: "Lak Si (north)",
+    price: "฿3.29M", priceSub: "฿35,000/sq.wah · ฿8,750/m²", perM2: 8750,
+    area: "94 sq.wah · 376 m²", perimeter: "≈ 78 m (est.)",
+    catchment: "outer", tier: "entry",
+    transport: "Lak Si; SRT Red Line Lak Si and the Vibhavadi–Chaeng Watthana junction",
+    posted: "First seen 26 Oct 2026 — source page undated",
+    competitors: "Government-district housing around Chaeng Watthana; steady civil-servant demand.",
+    detail: "First Lak Si plot tracked and the second-lowest ticket on the register. Red Line commuter rail plus the Chaeng Watthana government cluster give it a defined salaried catchment. Small — a single house. Source page undated, so verify the ask.",
+    source: { label: "Hipflat Bangkok land", url: "https://www.hipflat.com/land-for-sale/bangkok" }
+  },
+  {
     name: "Ramkhamhaeng / Krungthep Kreetha zone watch", district: "Bang Kapi–Saphan Sung",
     price: "Zone watch", priceSub: "multiple listings live", perM2: null,
     area: "Various — DDproperty zone page", perimeter: "—",
@@ -951,12 +1006,17 @@ const COORDS = [
   [13.7790, 100.4590], // Taling Chan compact
   [13.7250, 100.5820], // Thong Lo
   [13.7490, 100.5090], // Pom Prap Sattru Phai
+  [13.7623, 100.5552], // Din Daeng
+  [13.8160, 100.7520], // Min Buri 345 sq.wah
+  [13.7060, 100.6820], // Prawet 389 sq.wah
+  [13.7430, 100.5560], // Sukhumvit 13
+  [13.8870, 100.5750], // Lak Si
   [13.7500, 100.6520]  // Ramkhamhaeng zone watch
 ];
 /* land area in m², same order as PLOTS (null = zone watch, no single parcel) */
-const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 2248, 392, 34940, 752, 600, 1200, null, 1600, 1564, 1328, 3836, 584, 8088, 317, 1584, 1436, 12296, 3400, 2132, 402, 1096, 1244, 7048, 1602, 2400, 7888, 1632, 1600, 3544, null, null, 1600, 404, null, null, null];
+const SQM = [4070, 3180, 200, 1064, 2688, 1672, 972, 394, 464, 1564, 464, 14400, 2248, 392, 34940, 752, 600, 1200, null, 1600, 1564, 1328, 3836, 584, 8088, 317, 1584, 1436, 12296, 3400, 2132, 402, 1096, 1244, 7048, 1602, 2400, 7888, 1632, 1600, 3544, null, null, 1600, 404, null, null, 420, 1380, 1556, 1100, 376, null];
 PLOTS.forEach((p, i) => { p.lat = COORDS[i][0]; p.lng = COORDS[i][1]; p.sqm = SQM[i]; p.id = "plot-" + i; });
-PLOTS[47].zone = true;
+PLOTS[52].zone = true;
 const gmaps = p => "https://www.google.com/maps/search/?api=1&query=" + p.lat + "," + p.lng;
 const gearth = p => "https://earth.google.com/web/@" + p.lat + "," + p.lng + ",0a,600d,35y,0h,0t,0r";
 
